@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ========================================
+   BASE THEME VARIABLES
+   ======================================== */
+:root {
+  --coral: #FF8243;
+  --pink: #FFC0CB;
+  --yellow: #FCE883;
+  --teal: #069494;
+  --purple-bg: #1b0d2c;
+  --purple-surface: #2a1845;
+  --purple-surface-alt: #3d2560;
+  --purple-text: #f0e6f6;
+  --purple-text-muted: #b8a5c8;
+  --transition-theme: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --bg: #fafafa;
+  --bg-alt: #f0f0f0;
+  --surface: #ffffff;
+  --surface-hover: #f5f5f5;
+  --text: #1a1a2e;
+  --text-muted: #6b7280;
+  --accent: #069494;
+  --accent-hover: #057a7a;
+  --accent-rgb: 6, 148, 148;
+  --accent-secondary: #FF8243;
+  --accent-tertiary: #FFC0CB;
+  --accent-quaternary: #FCE883;
+  --border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --bubble-color: rgba(6, 148, 148, 0.08);
+  --shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --nav-height: 72px;
+}
+
+/* ========================================
+   PROFESSIONAL
+   ======================================== */
+[data-vibe="professional"][data-mode="light"] {
+  --bg: #fafafa; --bg-alt: #f0eeee; --surface: #ffffff; --surface-hover: #f7f5f5;
+  --text: #1a1a2e; --text-muted: #6b7280;
+  --accent: #069494; --accent-hover: #057a7a; --accent-rgb: 6, 148, 148;
+  --accent-secondary: #FF8243; --accent-tertiary: #FFC0CB; --accent-quaternary: #FCE883;
+  --border: rgba(0,0,0,0.08);
+  --glass-bg: rgba(255,255,255,0.7); --glass-border: rgba(6,148,148,0.15);
+  --bubble-color: rgba(6,148,148,0.06);
+  --shadow: 0 4px 30px rgba(0,0,0,0.06);
+  --font-heading: 'Playfair Display', serif; --font-body: 'DM Sans', sans-serif;
+}
+[data-vibe="professional"][data-mode="dark"] {
+  --bg: #1b0d2c; --bg-alt: #150a24; --surface: #2a1845; --surface-hover: #3d2560;
+  --text: #f0e6f6; --text-muted: #b8a5c8;
+  --accent: #4dd8d8; --accent-hover: #3cc5c5; --accent-rgb: 77, 216, 216;
+  --accent-secondary: #FF8243; --accent-tertiary: #FFC0CB; --accent-quaternary: #FCE883;
+  --border: rgba(255,255,255,0.08);
+  --glass-bg: rgba(42,24,69,0.7); --glass-border: rgba(77,216,216,0.15);
+  --bubble-color: rgba(77,216,216,0.06);
+  --shadow: 0 4px 30px rgba(0,0,0,0.3);
+  --font-heading: 'Playfair Display', serif; --font-body: 'DM Sans', sans-serif;
+}
+
+/* ========================================
+   INTERESTING
+   ======================================== */
+[data-vibe="interesting"][data-mode="light"] {
+  --bg: #fef9f0; --bg-alt: #fff5e6; --surface: #ffffff; --surface-hover: #fff0db;
+  --text: #264653; --text-muted: #557080;
+  --accent: #FF8243; --accent-hover: #e6733a; --accent-rgb: 255, 130, 67;
+  --accent-secondary: #069494; --accent-tertiary: #FFC0CB; --accent-quaternary: #FCE883;
+  --border: rgba(255,130,67,0.15);
+  --glass-bg: rgba(255,255,255,0.5); --glass-border: rgba(255,130,67,0.2);
+  --bubble-color: rgba(255,130,67,0.08);
+  --shadow: 0 4px 30px rgba(255,130,67,0.1);
+  --font-heading: 'DM Sans', sans-serif; --font-body: 'DM Sans', sans-serif;
+}
+[data-vibe="interesting"][data-mode="dark"] {
+  --bg: #1b0d2c; --bg-alt: #220f38; --surface: #2a1845; --surface-hover: #3d2560;
+  --text: #fef3e2; --text-muted: #d4b896;
+  --accent: #FF8243; --accent-hover: #ff9a66; --accent-rgb: 255, 130, 67;
+  --accent-secondary: #FFC0CB; --accent-tertiary: #FCE883; --accent-quaternary: #069494;
+  --border: rgba(255,130,67,0.15);
+  --glass-bg: rgba(42,24,69,0.6); --glass-border: rgba(255,130,67,0.2);
+  --bubble-color: rgba(255,130,67,0.08);
+  --shadow: 0 4px 30px rgba(255,130,67,0.15);
+  --font-heading: 'DM Sans', sans-serif; --font-body: 'DM Sans', sans-serif;
+}
+
+/* ========================================
+   PREMIUM
+   ======================================== */
+[data-vibe="premium"][data-mode="light"] {
+  --bg: #f5f0eb; --bg-alt: #ebe5de; --surface: #faf8f5; --surface-hover: #f0ece7;
+  --text: #1a1a1a; --text-muted: #8a8a8a;
+  --accent: #c87a3a; --accent-hover: #b06a2e; --accent-rgb: 200, 122, 58;
+  --accent-secondary: #FF8243; --accent-tertiary: #d4af37; --accent-quaternary: #8a7060;
+  --border: rgba(0,0,0,0.06);
+  --glass-bg: rgba(245,240,235,0.7); --glass-border: rgba(200,122,58,0.12);
+  --bubble-color: rgba(200,122,58,0.05);
+  --shadow: 0 4px 40px rgba(0,0,0,0.04);
+  --font-heading: 'Cormorant Garamond', serif; --font-body: 'Inter Tight', sans-serif;
+}
+[data-vibe="premium"][data-mode="dark"] {
+  --bg: #110820; --bg-alt: #0d0618; --surface: #1a0f2e; --surface-hover: #251840;
+  --text: #f5f0eb; --text-muted: #8a7a90;
+  --accent: #d4a050; --accent-hover: #e0b060; --accent-rgb: 212, 160, 80;
+  --accent-secondary: #FF8243; --accent-tertiary: #d4af37; --accent-quaternary: #c4956a;
+  --border: rgba(212,160,80,0.1);
+  --glass-bg: rgba(26,15,46,0.7); --glass-border: rgba(212,160,80,0.12);
+  --bubble-color: rgba(212,175,55,0.05);
+  --shadow: 0 4px 40px rgba(0,0,0,0.4);
+  --font-heading: 'Cormorant Garamond', serif; --font-body: 'Inter Tight', sans-serif;
+}
+
+/* ========================================
+   DEVELOPER
+   ======================================== */
+[data-vibe="developer"][data-mode="light"] {
+  --bg: #f8f9fa; --bg-alt: #eef0f2; --surface: #ffffff; --surface-hover: #f0f2f4;
+  --text: #24292f; --text-muted: #656d76;
+  --accent: #069494; --accent-hover: #057a7a; --accent-rgb: 6, 148, 148;
+  --accent-secondary: #FF8243; --accent-tertiary: #0969da; --accent-quaternary: #8250df;
+  --border: rgba(0,0,0,0.1);
+  --glass-bg: rgba(255,255,255,0.8); --glass-border: rgba(6,148,148,0.2);
+  --bubble-color: rgba(6,148,148,0.05);
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --font-heading: 'JetBrains Mono', monospace; --font-body: 'IBM Plex Sans', sans-serif;
+}
+[data-vibe="developer"][data-mode="dark"] {
+  --bg: #0d1117; --bg-alt: #010409; --surface: #161b22; --surface-hover: #1c2128;
+  --text: #e6edf3; --text-muted: #8b949e;
+  --accent: #00ff41; --accent-hover: #33ff66; --accent-rgb: 0, 255, 65;
+  --accent-secondary: #00d4ff; --accent-tertiary: #ffb000; --accent-quaternary: #ff6b6b;
+  --border: rgba(48,54,61,0.8);
+  --glass-bg: rgba(22,27,34,0.8); --glass-border: rgba(0,255,65,0.1);
+  --bubble-color: rgba(0,255,65,0.04);
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+  --font-heading: 'JetBrains Mono', monospace; --font-body: 'IBM Plex Sans', sans-serif;
+}
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+/* Tailwind v4 preflight handles box-sizing and resets */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color var(--transition-theme), color var(--transition-theme);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ========================================
+   GRAIN OVERLAY — Film texture for depth
+   ======================================== */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: overlay;
+}
+
+[data-mode="dark"] .grain-overlay { opacity: 0.04; }
+
+/* ========================================
+   GLASSMORPHISM
+   ======================================== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ========================================
+   BUBBLES
+   ======================================== */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--bubble-color);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+[data-vibe="developer"] .bubble {
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+
+/* ========================================
+   PREMIUM TYPOGRAPHY OVERRIDES
+   ======================================== */
+[data-vibe="premium"] h1,
+[data-vibe="premium"] h2,
+[data-vibe="premium"] h3 { font-weight: 300; letter-spacing: 0.02em; }
+[data-vibe="premium"] p,
+[data-vibe="premium"] span { letter-spacing: 0.04em; }
+
+/* ========================================
+   DEVELOPER CRT SCANLINES
+   ======================================== */
+[data-vibe="developer"][data-mode="dark"] .crt-overlay { position: relative; }
+[data-vibe="developer"][data-mode="dark"] .crt-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ========================================
+   MAGNETIC BUTTON EFFECT
+   ======================================== */
+.magnetic-btn {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.magnetic-btn::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.magnetic-btn:hover::after { opacity: 1; }
+
+/* ========================================
+   3D TILT CARD BASE
+   ======================================== */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.15s ease-out;
+}
+
+.tilt-card-inner {
+  backface-visibility: hidden;
+}
+
+/* ========================================
+   GRADIENT TEXT
+   ======================================== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   SECTION DIVIDER WAVE
+   ======================================== */
+.section-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  overflow: hidden;
+}
+
+.section-wave svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+/* ========================================
+   STAGGER ANIMATION HELPERS
+   ======================================== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ========================================
+   SKILL BAR GLOW
+   ======================================== */
+.skill-bar-glow {
+  position: relative;
+}
+
+.skill-bar-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--accent);
+  filter: blur(6px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* ========================================
+   PROJECT CARD HOVER SHINE
+   ======================================== */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-shine:hover::before {
+  left: 120%;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+@media (max-width: 768px) {
+  :root { --nav-height: 64px; }
+}
