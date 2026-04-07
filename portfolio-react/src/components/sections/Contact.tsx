@@ -110,7 +110,7 @@ export function Contact() {
         {vibe === 'interesting' && (
           <AnimatedSection delay={0.4}>
             <motion.img
-              src="/images/anime-1.png"
+              src={`${import.meta.env.BASE_URL}images/anime-1.png`}
               alt=""
               className="w-24 md:w-32 mx-auto rounded-2xl opacity-80"
               whileHover={{ scale: 1.1, rotate: 5, y: -8 }}

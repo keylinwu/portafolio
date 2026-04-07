@@ -86,7 +86,7 @@ export function Skills() {
         {vibe === 'interesting' && (
           <AnimatedSection delay={0.5} className="mt-12 flex justify-center">
             <motion.img
-              src="/images/anime-2.png"
+              src={`${import.meta.env.BASE_URL}images/anime-2.png`}
               alt=""
               className="w-32 md:w-48 rounded-3xl"
               animate={{ y: [0, -10, 0] }}

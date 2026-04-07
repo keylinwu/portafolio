@@ -145,7 +145,7 @@ export function Hero() {
             transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
           >
             <div className="crt-overlay rounded-xl overflow-hidden w-48 md:w-64">
-              <img src="/images/anime-1.png" alt="Keylin coding anime" className="w-full" />
+              <img src={`${import.meta.env.BASE_URL}images/anime-1.png`} alt="Keylin coding anime" className="w-full" />
             </div>
           </motion.div>
         </motion.div>
@@ -253,14 +253,14 @@ export function Hero() {
             transition={{ delay: 1.4, duration: 0.6, ease: 'easeOut' }}
           >
             <motion.img
-              src="/images/anime-1.png"
+              src={`${import.meta.env.BASE_URL}images/anime-1.png`}
               alt=""
               className="w-24 md:w-32 rounded-2xl shadow-lg"
               whileHover={{ scale: 1.1, rotate: -5, y: -8 }}
               transition={{ type: 'spring', stiffness: 300 }}
             />
             <motion.img
-              src="/images/anime-2.png"
+              src={`${import.meta.env.BASE_URL}images/anime-2.png`}
               alt=""
               className="w-24 md:w-32 rounded-2xl shadow-lg -mt-4"
               whileHover={{ scale: 1.1, rotate: 5, y: -8 }}
@@ -351,7 +351,7 @@ export function Hero() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.6 }}
             >
-              <img src="/images/anime-cr.png" alt="Keylin coding in Costa Rica mountains" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}images/anime-cr.png`} alt="Keylin coding in Costa Rica mountains" className="w-full h-full object-cover" />
               <div
                 className="absolute inset-0"
                 style={{
@@ -377,7 +377,7 @@ export function Hero() {
           transition={{ type: 'spring', stiffness: 150, damping: 15, delay: 0.2 }}
           whileHover={{ scale: 1.05, boxShadow: '0 0 0 6px var(--accent), 0 0 30px rgba(var(--accent-rgb), 0.3)' }}
         >
-          <img src="/images/profile.jpeg" alt={profile.name} className="w-full h-full object-cover" />
+          <img src={`${import.meta.env.BASE_URL}images/profile.jpeg`} alt={profile.name} className="w-full h-full object-cover" />
         </motion.div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ color: 'var(--text)' }}>
