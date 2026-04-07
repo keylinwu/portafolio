@@ -4,19 +4,13 @@ import { useTheme } from '../../context/ThemeContext'
 import { AnimatedSection } from '../common/AnimatedSection'
 
 export function Contact() {
-  const { vibe, mode } = useTheme()
+  const { vibe } = useTheme()
 
-  const title =
-    vibe === 'developer' ? '## contact --send' :
-    vibe === 'interesting' ? "Let's Build Something Cool!" :
-    vibe === 'premium' ? 'Get In Touch' :
-    'Contact'
+  const title = vibe === 'interesting' ? "Let's Build Something Cool!" : 'Contact'
 
-  const subtitle =
-    vibe === 'developer' ? '// Ping me anytime. I read all my messages.' :
-    vibe === 'interesting' ? "I'm always up for a chat about apps, anime, or anything in between." :
-    vibe === 'premium' ? 'Available for select opportunities and collaborations.' :
-    "I'd love to hear from you. Let's connect!"
+  const subtitle = vibe === 'interesting'
+    ? "I'm always up for a chat about apps, anime, or anything in between."
+    : "I'd love to hear from you. Let's connect!"
 
   return (
     <section id="contact" className="py-24 md:py-36 px-8 md:px-16 lg:px-24 relative" style={{ background: 'var(--bg-alt)' }}>
@@ -24,7 +18,7 @@ export function Contact() {
         <AnimatedSection>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
-            style={{ color: vibe === 'developer' ? 'var(--accent)' : 'var(--text)' }}
+            style={{ color: 'var(--text)' }}
           >
             {title}
           </h2>
@@ -43,20 +37,14 @@ export function Contact() {
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               className={`magnetic-btn px-8 py-4 font-medium no-underline text-base ${
-                vibe === 'interesting' ? 'rounded-full' :
-                vibe === 'premium' ? 'rounded-none' :
-                'rounded-lg'
+                vibe === 'interesting' ? 'rounded-full' : 'rounded-lg'
               }`}
               style={{
                 background: 'var(--accent)',
-                color: vibe === 'developer' && mode === 'dark' ? '#0d1117' : '#fff',
-                fontFamily: vibe === 'developer' ? 'var(--font-heading)' : 'var(--font-body)',
-                letterSpacing: vibe === 'premium' ? '0.15em' : undefined,
-                textTransform: vibe === 'premium' ? 'uppercase' : undefined,
-                fontSize: vibe === 'premium' ? '0.8rem' : undefined,
+                color: '#fff',
               }}
             >
-              {vibe === 'developer' ? '> send_email()' : vibe === 'interesting' ? 'Say Hi! 👋' : vibe === 'premium' ? 'Email' : 'Send Email'}
+              {vibe === 'interesting' ? 'Say Hi! 👋' : 'Send Email'}
             </motion.a>
 
             <motion.a
@@ -66,20 +54,14 @@ export function Contact() {
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               className={`magnetic-btn px-8 py-4 font-medium no-underline text-base ${
-                vibe === 'interesting' ? 'rounded-full' :
-                vibe === 'premium' ? 'rounded-none' :
-                'rounded-lg'
+                vibe === 'interesting' ? 'rounded-full' : 'rounded-lg'
               }`}
               style={{
                 border: '1px solid var(--accent)',
                 color: 'var(--accent)',
-                fontFamily: vibe === 'developer' ? 'var(--font-heading)' : 'var(--font-body)',
-                letterSpacing: vibe === 'premium' ? '0.15em' : undefined,
-                textTransform: vibe === 'premium' ? 'uppercase' : undefined,
-                fontSize: vibe === 'premium' ? '0.8rem' : undefined,
               }}
             >
-              {vibe === 'developer' ? '> open linkedin' : 'LinkedIn'}
+              LinkedIn
             </motion.a>
 
             <motion.a
@@ -89,20 +71,14 @@ export function Contact() {
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
               className={`magnetic-btn px-8 py-4 font-medium no-underline text-base ${
-                vibe === 'interesting' ? 'rounded-full' :
-                vibe === 'premium' ? 'rounded-none' :
-                'rounded-lg'
+                vibe === 'interesting' ? 'rounded-full' : 'rounded-lg'
               }`}
               style={{
                 border: '1px solid var(--border)',
                 color: 'var(--text-muted)',
-                fontFamily: vibe === 'developer' ? 'var(--font-heading)' : 'var(--font-body)',
-                letterSpacing: vibe === 'premium' ? '0.15em' : undefined,
-                textTransform: vibe === 'premium' ? 'uppercase' : undefined,
-                fontSize: vibe === 'premium' ? '0.8rem' : undefined,
               }}
             >
-              {vibe === 'developer' ? '> open github' : 'GitHub'}
+              GitHub
             </motion.a>
           </div>
         </AnimatedSection>
@@ -121,12 +97,8 @@ export function Contact() {
 
         <AnimatedSection delay={0.3}>
           <p className="text-xs mt-16" style={{ color: 'var(--text-muted)' }}>
-            {vibe === 'developer'
-              ? '// Built with React + TypeScript + Framer Motion + Tailwind'
-              : vibe === 'interesting'
+            {vibe === 'interesting'
               ? 'Made with lots of coffee and good vibes from Costa Rica ☕🌴'
-              : vibe === 'premium'
-              ? `\u00A9 ${new Date().getFullYear()} Keylin Wu`
               : `\u00A9 ${new Date().getFullYear()} Keylin Wu. Built with React.`}
           </p>
         </AnimatedSection>

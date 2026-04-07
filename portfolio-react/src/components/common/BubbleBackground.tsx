@@ -15,7 +15,7 @@ export function BubbleBackground() {
   const { vibe } = useTheme()
 
   const bubbles = useMemo(() => {
-    const count = vibe === 'professional' ? 8 : vibe === 'interesting' ? 16 : vibe === 'premium' ? 10 : 12
+    const count = vibe === 'professional' ? 8 : 16
     return Array.from({ length: count }, (_, i): Bubble => ({
       id: i,
       size: Math.random() * 100 + 20,

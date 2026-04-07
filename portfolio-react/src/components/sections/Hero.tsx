@@ -1,38 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { profile } from '../../data/portfolio'
 import { useTheme } from '../../context/ThemeContext'
-
-function TypewriterText({ text, speed = 60 }: { text: string; speed?: number }) {
-  const [displayed, setDisplayed] = useState('')
-  const [showCursor, setShowCursor] = useState(true)
-
-  useEffect(() => {
-    setDisplayed('')
-    let i = 0
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        setDisplayed(text.slice(0, i + 1))
-        i++
-      } else {
-        clearInterval(interval)
-      }
-    }, speed)
-    return () => clearInterval(interval)
-  }, [text, speed])
-
-  useEffect(() => {
-    const blink = setInterval(() => setShowCursor((c) => !c), 530)
-    return () => clearInterval(blink)
-  }, [])
-
-  return (
-    <span>
-      {displayed}
-      <span style={{ opacity: showCursor ? 1 : 0, color: 'var(--accent)' }}>|</span>
-    </span>
-  )
-}
 
 function StaggeredName({ name, className, style }: { name: string; className?: string; style?: React.CSSProperties }) {
   return (
@@ -67,92 +36,6 @@ export function Hero() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   const heroY = useTransform(scrollYProgress, [0, 0.8], [0, 80])
 
-  if (vibe === 'developer') {
-    return (
-      <section ref={sectionRef} id="home" className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
-        <motion.div className="max-w-4xl w-full pt-20" style={{ opacity: heroOpacity, y: heroY }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
-          >
-            <div
-              className="rounded-xl p-6 md:p-10 card-shine"
-              style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-            >
-              <motion.p
-                className="text-sm mb-4"
-                style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                ~/portfolio $
-              </motion.p>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'var(--font-heading)', color: 'var(--accent)' }}>
-                <TypewriterText text={`> ${profile.name}.init()`} />
-              </h1>
-              <motion.p
-                className="text-lg md:text-xl mb-2"
-                style={{ fontFamily: 'var(--font-heading)', color: 'var(--text)' }}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.5, duration: 0.4 }}
-              >
-                <span style={{ color: 'var(--accent-secondary)' }}>const</span> role = <span style={{ color: 'var(--accent-tertiary)' }}>"{profile.title}"</span>;
-              </motion.p>
-              <motion.p
-                className="text-base md:text-lg mb-8"
-                style={{ fontFamily: 'var(--font-heading)', color: 'var(--text-muted)' }}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.8, duration: 0.4 }}
-              >
-                <span style={{ color: 'var(--text-muted)' }}>// {profile.tagline}</span>
-              </motion.p>
-              <motion.div
-                className="flex flex-wrap gap-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2.1 }}
-              >
-                <motion.a
-                  href="#projects"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="magnetic-btn px-6 py-3 rounded-lg text-sm font-medium no-underline transition-opacity"
-                  style={{ background: 'var(--accent)', color: 'var(--bg)', fontFamily: 'var(--font-heading)' }}
-                >
-                  {'> ls projects/'}
-                </motion.a>
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="magnetic-btn px-6 py-3 rounded-lg text-sm font-medium no-underline transition-opacity"
-                  style={{ border: '1px solid var(--accent)', color: 'var(--accent)', fontFamily: 'var(--font-heading)' }}
-                >
-                  {'> contact --send'}
-                </motion.a>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="mt-8 flex justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
-          >
-            <div className="crt-overlay rounded-xl overflow-hidden w-48 md:w-64">
-              <img src={`${import.meta.env.BASE_URL}images/anime-1.png`} alt="Keylin coding anime" className="w-full" />
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-    )
-  }
-
   if (vibe === 'interesting') {
     return (
       <section ref={sectionRef} id="home" className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
@@ -162,7 +45,7 @@ export function Hero() {
           animate={{ scale: 1, opacity: 0.15 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
           style={{
-            backgroundImage: 'url(/images/anime-cr.png)',
+            backgroundImage: `url(${import.meta.env.BASE_URL}images/anime-cr.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -266,99 +149,6 @@ export function Hero() {
               whileHover={{ scale: 1.1, rotate: 5, y: -8 }}
               transition={{ type: 'spring', stiffness: 300 }}
             />
-          </motion.div>
-        </motion.div>
-      </section>
-    )
-  }
-
-  if (vibe === 'premium') {
-    return (
-      <section ref={sectionRef} id="home" className="min-h-screen flex items-center px-6 md:px-16 relative overflow-hidden">
-        <motion.div
-          className="w-full max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center pt-24"
-          style={{ opacity: heroOpacity, y: heroY }}
-        >
-          <div>
-            <motion.p
-              className="text-sm uppercase tracking-[0.3em] mb-6"
-              style={{ color: 'var(--text-muted)' }}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Portfolio
-            </motion.p>
-
-            <h1 className="text-5xl md:text-7xl lg:text-8xl mb-6" style={{ lineHeight: 1, color: 'var(--text)' }}>
-              {profile.name.split(' ').map((word, i) => (
-                <span key={i} className="block overflow-hidden">
-                  <motion.span
-                    className="block"
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 + i * 0.15, ease: [0.215, 0.61, 0.355, 1] }}
-                  >
-                    {i === 1 ? <span style={{ color: 'var(--accent)' }}>{word}</span> : word}
-                  </motion.span>
-                </span>
-              ))}
-            </h1>
-
-            <motion.div
-              className="w-16 h-[1px] mb-8"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              style={{ background: 'var(--accent)', transformOrigin: 'left' }}
-            />
-
-            <motion.p
-              className="text-lg mb-8"
-              style={{ color: 'var(--text-muted)', maxWidth: '400px' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-            >
-              {profile.tagline}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              <motion.a
-                href="#projects"
-                whileHover={{ letterSpacing: '0.3em', x: 8 }}
-                className="magnetic-btn inline-block px-10 py-4 text-sm uppercase tracking-[0.2em] no-underline transition-all"
-                style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}
-              >
-                View Work
-              </motion.a>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="hidden md:block"
-            initial={{ opacity: 0, scale: 0.95, x: 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.215, 0.61, 0.355, 1] }}
-          >
-            <motion.div
-              className="relative overflow-hidden"
-              style={{ aspectRatio: '3/4' }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.6 }}
-            >
-              <img src={`${import.meta.env.BASE_URL}images/anime-cr.png`} alt="Keylin coding in Costa Rica mountains" className="w-full h-full object-cover" />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(to top, var(--bg) 0%, transparent 30%)',
-                }}
-              />
-            </motion.div>
           </motion.div>
         </motion.div>
       </section>

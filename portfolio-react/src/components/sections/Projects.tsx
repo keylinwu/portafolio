@@ -38,10 +38,7 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
       <motion.div
         ref={cardRef}
         className={`glass h-full overflow-hidden cursor-default ${
-          vibe === 'developer' ? 'rounded-lg crt-overlay' :
-          vibe === 'interesting' ? 'rounded-3xl' :
-          vibe === 'premium' ? 'rounded-none' :
-          'rounded-2xl'
+          vibe === 'interesting' ? 'rounded-3xl' : 'rounded-2xl'
         }`}
         style={{
           boxShadow: 'var(--shadow)',
@@ -54,8 +51,6 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
         whileHover={
           vibe === 'interesting'
             ? { scale: 1.04, rotate: index % 2 === 0 ? 1 : -1 }
-            : vibe === 'premium'
-            ? { y: -8 }
             : {}
         }
         transition={
@@ -81,14 +76,8 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
         />
 
         <div className="p-6 relative">
-          {vibe === 'developer' && (
-            <p className="text-xs mb-2" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }}>
-              {'>'} cat {project.name.toLowerCase().replace(/\s/g, '_')}.md
-            </p>
-          )}
-
           <h3
-            className={`font-bold mb-1 ${vibe === 'premium' ? 'text-xl' : 'text-lg'}`}
+            className="font-bold mb-1 text-lg"
             style={{ color: 'var(--text)', fontFamily: 'var(--font-heading)' }}
           >
             {project.name}
@@ -110,20 +99,14 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
               <span
                 key={tag}
                 className={`text-xs px-3 py-1 font-medium ${
-                  vibe === 'developer' ? 'rounded' :
-                  vibe === 'interesting' ? 'rounded-full' :
-                  'rounded-md'
+                  vibe === 'interesting' ? 'rounded-full' : 'rounded-md'
                 }`}
                 style={{
-                  background: vibe === 'developer'
-                    ? 'var(--surface-hover)'
-                    : `${project.color}15`,
-                  color: vibe === 'developer' ? 'var(--accent)' : project.color,
-                  border: vibe === 'developer' ? `1px solid var(--border)` : 'none',
-                  fontFamily: vibe === 'developer' ? 'var(--font-heading)' : 'var(--font-body)',
+                  background: `${project.color}15`,
+                  color: project.color,
                 }}
               >
-                {vibe === 'developer' ? `#${tag}` : tag}
+                {tag}
               </span>
             ))}
           </div>
@@ -136,19 +119,31 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
 export function Projects() {
   const { vibe } = useTheme()
 
-  const sectionTitle =
-    vibe === 'developer' ? '## projects/' :
-    vibe === 'interesting' ? 'Stuff I\'ve Built ✨' :
-    vibe === 'premium' ? 'Selected Work' :
-    'Projects'
+  const sectionTitle = vibe === 'interesting' ? 'Stuff I\'ve Built ✨' : 'Projects'
 
   return (
-    <section id="projects" className="py-24 md:py-36 px-8 md:px-16 lg:px-24 relative">
-      <div className="max-w-5xl mx-auto">
+    <section id="projects" className="py-24 md:py-36 px-8 md:px-16 lg:px-24 relative overflow-hidden">
+      {/* Background image for Professional vibe */}
+      {vibe === 'professional' && (
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.1, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.08 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          style={{
+            backgroundImage: `url(${import.meta.env.BASE_URL}images/anime-cr.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      )}
+
+      <div className="max-w-5xl mx-auto relative z-10">
         <AnimatedSection>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-center"
-            style={{ color: vibe === 'developer' ? 'var(--accent)' : 'var(--text)' }}
+            style={{ color: 'var(--text)' }}
           >
             {sectionTitle}
           </h2>
@@ -159,12 +154,8 @@ export function Projects() {
             className="mb-12 md:mb-16 max-w-2xl mx-auto text-center"
             style={{ color: 'var(--text-muted)' }}
           >
-            {vibe === 'developer'
-              ? '// A selection of projects I\'ve shipped'
-              : vibe === 'interesting'
+            {vibe === 'interesting'
               ? 'From fintech to music to gaming — I love building things that matter.'
-              : vibe === 'premium'
-              ? 'A curated collection of meaningful work.'
               : '8+ years of building apps for companies and users I believe in.'}
           </p>
         </AnimatedSection>

@@ -6,8 +6,6 @@ import type { Vibe } from '../../data/portfolio'
 const vibes: { key: Vibe; label: string; emoji: string; color: string }[] = [
   { key: 'professional', label: 'Pro', emoji: '💼', color: '#069494' },
   { key: 'interesting', label: 'Fun', emoji: '✨', color: '#FF8243' },
-  { key: 'premium', label: 'Luxe', emoji: '👑', color: '#d4af37' },
-  { key: 'developer', label: 'Dev', emoji: '💻', color: '#00ff41' },
 ]
 
 export function ThemeSwitcher() {

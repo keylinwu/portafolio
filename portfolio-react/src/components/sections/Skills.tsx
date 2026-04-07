@@ -6,7 +6,7 @@ import { AnimatedSection } from '../common/AnimatedSection'
 export function Skills() {
   const { vibe } = useTheme()
 
-  const sectionTitle = vibe === 'developer' ? '## my_toolkit' : vibe === 'interesting' ? 'My Toolkit' : vibe === 'premium' ? 'Expertise' : 'Skills'
+  const sectionTitle = vibe === 'interesting' ? 'My Toolkit' : 'Skills'
 
   return (
     <section id="skills" className="py-24 md:py-36 px-8 md:px-16 lg:px-24 relative" style={{ background: 'var(--bg-alt)' }}>
@@ -14,7 +14,7 @@ export function Skills() {
         <AnimatedSection>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 md:mb-16 text-center"
-            style={{ color: vibe === 'developer' ? 'var(--accent)' : 'var(--text)' }}
+            style={{ color: 'var(--text)' }}
           >
             {sectionTitle}
           </h2>
@@ -24,7 +24,7 @@ export function Skills() {
           {skills.map((skill, i) => (
             <AnimatedSection key={skill.name} delay={i * 0.08}>
               <motion.div
-                className={`glass card-shine h-full ${vibe === 'developer' ? 'rounded-lg crt-overlay' : vibe === 'interesting' ? 'rounded-3xl' : vibe === 'premium' ? 'rounded-none' : 'rounded-2xl'} p-6`}
+                className={`glass card-shine h-full ${vibe === 'interesting' ? 'rounded-3xl' : 'rounded-2xl'} p-6`}
                 whileHover={
                   vibe === 'interesting'
                     ? { scale: 1.05, rotate: i % 2 === 0 ? 2 : -2, y: -4 }
@@ -42,10 +42,10 @@ export function Skills() {
                     {skill.icon}
                   </motion.span>
                   <h3
-                    className={`font-bold ${vibe === 'premium' ? 'text-xl' : 'text-lg'}`}
+                    className="font-bold text-lg"
                     style={{ color: 'var(--text)', fontFamily: 'var(--font-heading)' }}
                   >
-                    {vibe === 'developer' ? `> ${skill.name}` : skill.name}
+                    {skill.name}
                   </h3>
                 </div>
 
@@ -65,18 +65,6 @@ export function Skills() {
                       transition={{ duration: 1.2, delay: 0.2 + i * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                     />
                   </div>
-                  {vibe === 'developer' && (
-                    <motion.p
-                      className="text-xs mt-2"
-                      style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-heading)' }}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.6 + i * 0.1 }}
-                    >
-                      [{skill.level}%] {'█'.repeat(Math.floor(skill.level / 10))}{'░'.repeat(10 - Math.floor(skill.level / 10))}
-                    </motion.p>
-                  )}
                 </div>
               </motion.div>
             </AnimatedSection>

@@ -136,19 +136,15 @@ export const navItems = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export type Vibe = 'professional' | 'interesting' | 'premium' | 'developer'
+export type Vibe = 'professional' | 'interesting'
 export type Mode = 'light' | 'dark'
 
 export const vibeLabels: Record<Vibe, string> = {
   professional: 'Professional',
   interesting: 'Interesting',
-  premium: 'Premium',
-  developer: 'Developer',
 }
 
 export const vibeEmojis: Record<Vibe, string> = {
   professional: '💼',
   interesting: '✨',
-  premium: '👑',
-  developer: '💻',
 }

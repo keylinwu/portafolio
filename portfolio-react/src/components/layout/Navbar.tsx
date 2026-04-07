@@ -7,12 +7,10 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const { scrollY } = useScroll()
-  const { vibe } = useTheme()
+  const { mode, toggleMode } = useTheme()
 
   const backdropBlur = useTransform(scrollY, [0, 100], [0, 20])
   const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.8])
-
-  const prefix = vibe === 'developer' ? '> ' : ''
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +49,7 @@ export function Navbar() {
           style={{ fontFamily: 'var(--font-heading)', color: 'var(--accent)' }}
           whileHover={{ scale: 1.05 }}
         >
-          {prefix}K.W
+          K.W
         </motion.a>
 
         {/* Desktop nav */}
@@ -68,7 +66,7 @@ export function Navbar() {
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
-              {prefix}{item.label}
+              {item.label}
               {activeSection === item.href.slice(1) && (
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full"
@@ -79,6 +77,30 @@ export function Navbar() {
               )}
             </motion.a>
           ))}
+
+          {/* Dark/Light mode toggle */}
+          <motion.button
+            onClick={toggleMode}
+            whileHover={{ scale: 1.15, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
+            className="ml-2 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
+            style={{
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
+              color: 'var(--text)',
+              fontSize: '1.1rem',
+            }}
+            title={mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            <motion.span
+              key={mode}
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            >
+              {mode === 'light' ? '🌙' : '☀️'}
+            </motion.span>
+          </motion.button>
         </div>
 
         {/* Mobile hamburger */}
@@ -126,7 +148,7 @@ export function Navbar() {
             animate={isMenuOpen ? { opacity: 1, y: 0, transition: { delay: i * 0.08 } } : { opacity: 0, y: 20 }}
             whileHover={{ color: 'var(--accent)', x: 8 }}
           >
-            {prefix}{item.label}
+            {item.label}
           </motion.a>
         ))}
       </motion.div>
