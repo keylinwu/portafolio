@@ -5,7 +5,7 @@ import { useTheme, type Vibe } from '../../context/ThemeContext'
 import { AnimatedSection } from '../common/AnimatedSection'
 
 function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLAnchorElement>(null)
   const mouseX = useMotionValue(0.5)
   const mouseY = useMotionValue(0.5)
 
@@ -35,9 +35,12 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
 
   return (
     <AnimatedSection delay={index * 0.06}>
-      <motion.div
+      <motion.a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
         ref={cardRef}
-        className={`glass h-full overflow-hidden cursor-default ${
+        className={`glass h-full overflow-hidden cursor-pointer block no-underline ${
           vibe === 'interesting' ? 'rounded-3xl' : 'rounded-2xl'
         }`}
         style={{
@@ -111,7 +114,7 @@ function TiltCard({ project, vibe, index }: { project: Project; vibe: Vibe; inde
             ))}
           </div>
         </div>
-      </motion.div>
+      </motion.a>
     </AnimatedSection>
   )
 }
@@ -156,7 +159,7 @@ export function Projects() {
           >
             {vibe === 'interesting'
               ? 'From fintech to music to gaming — I love building things that matter.'
-              : '8+ years of building apps for companies and users I believe in.'}
+              : '10+ years of building apps for companies and users I believe in.'}
           </p>
         </AnimatedSection>
 
