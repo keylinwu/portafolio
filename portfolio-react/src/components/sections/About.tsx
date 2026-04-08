@@ -33,7 +33,7 @@ export function About() {
               transition={{ type: 'spring', stiffness: 200 }}
             >
               <img
-                src={`${import.meta.env.BASE_URL}images/anime-cr.png`}
+                src={`${import.meta.env.BASE_URL}images/${vibe === 'interesting' ? 'anime-cr.png' : 'anime-2.png'}`}
                 alt="Keylin coding in Costa Rica mountains"
                 className="w-full"
               />
